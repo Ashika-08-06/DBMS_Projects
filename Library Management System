@@ -1,0 +1,117 @@
+CREATE TABLE Books (
+    BookID INT,
+    BookName VARCHAR(50),
+    Author VARCHAR(50),
+    Category VARCHAR(30),
+    Price INT,
+    AvailableCopies INT
+);
+
+
+
+CREATE TABLE Students (
+    StudentID INT,
+    StudentName VARCHAR(50),
+    Age INT,
+    City VARCHAR(30),
+    Course VARCHAR(30)
+);
+
+
+
+CREATE TABLE IssuedBooks (
+    IssueID INT,
+    StudentID INT,
+    BookID INT,
+    IssueDate DATE,
+    ReturnDate DATE
+);
+
+
+
+INSERT INTO Books VALUES
+(1, 'Python Basics', 'John Smith', 'Programming', 450, 5),
+(2, 'SQL Basics', 'David Miller', 'Database', 500, 4),
+(3, 'Java Programming', 'Herbert Schildt', 'Programming', 600, 3),
+(4, 'Computer Networks', 'James Kurose', 'Networking', 700, 2),
+(5, 'Web Development', 'Jon Duckett', 'Web Design', 550, 6);
+
+
+
+INSERT INTO Students VALUES
+(101, 'Neha', 21, 'Mumbai', 'BSc CS'),
+(102, 'Rahul', 22, 'Pune', 'BCA'),
+(103, 'Priya', 20, 'Mumbai', 'BSc CS'),
+(104, 'Amit', 23, 'Delhi', 'BCA'),
+(105, 'Sneha', 21, 'Nashik', 'BSc IT');
+
+
+INSERT INTO IssuedBooks VALUES
+(1, 101, 1, '2026-11-10', '2026-11-20'),
+(2, 102, 2, '2026-11-11', '2026-11-21'),
+(3, 103, 3, '2026-11-12', '2026-11-22'),
+(4, 104, 4, '2026-11-13', '2026-11-23'),
+(5, 105, 5, '2026-11-14', '2026-11-24');
+
+
+
+-- Display all books
+SELECT * FROM Books;
+
+-- Display all students
+SELECT * FROM Students;
+
+-- Display only book names
+SELECT BookName FROM Books;
+
+-- Display student names and cities
+SELECT StudentName, City FROM Students;
+
+-- Find books costing more than 500
+SELECT * FROM Books
+WHERE Price > 500;
+
+-- Find students from Mumbai
+SELECT * FROM Students
+WHERE City = 'Mumbai';
+
+-- Find students older than 20
+SELECT * FROM Students
+WHERE Age > 20;
+
+-- Find Programming books
+SELECT * FROM Books
+WHERE Category = 'Programming';
+
+
+-- AND
+SELECT * FROM Books
+WHERE Price > 400 AND AvailableCopies > 3;
+
+-- OR
+SELECT * FROM Students
+WHERE City = 'Mumbai' OR City = 'Pune';
+
+-- NOT
+SELECT * FROM Students
+WHERE NOT City = 'Mumbai';
+
+
+UPDATE Books
+SET Price = 480
+WHERE BookID = 1;
+
+UPDATE Students
+SET City = 'Thane'
+WHERE StudentID = 105;
+
+-- Display updated records
+SELECT * FROM Books;
+SELECT * FROM Students;
+
+
+DELETE FROM Students
+WHERE StudentID = 105;
+
+-- Display final student records
+SELECT * FROM Students;
